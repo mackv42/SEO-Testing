@@ -11,8 +11,8 @@ async function search(keyword){
 	return driver;
 }
 
-async function findElementsByTagName(driver){
-	let elements = await driver.findElements(By.xpath("//cite"));
+async function getElementsByTagName(driver, tag){
+	let elements = await driver.findElements(By.xpath("//"+tag));
 
 	let promises = 
 		elements.map( async function(elem){
@@ -20,8 +20,10 @@ async function findElementsByTagName(driver){
 			return x;
 		});
 
-	text = await Promise.all(promises);
-	return {"driver": driver, "elementsFound": elements, "text": text};
+	let text = await Promise.all(promises);
+
+
+	return {"driver": driver, "elementsFound": elements.map((x, index) => {x.text = text[index]; return x;})};
 }
 
 // Finds base url 
@@ -30,10 +32,8 @@ async function findBaseURL(driver, base){
 }
 
 
-search("dogs").then(driver => findBaseURL(driver, ""));
+search("dogs").then(driver => getElementsByTagName(driver, "cite").then(result => console.log(result.elementsFound)));
 
-
-setTimeout(()=>{}, 100000)
 
 //For parsing purpose we're going to extract all tags named cite 
 // Which is seemingly the tag used ( exclusive to ) search results
