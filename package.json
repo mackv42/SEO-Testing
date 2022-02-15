@@ -1,0 +1,22 @@
+{
+  "name": "seo-testing",
+  "version": "1.0.0",
+  "description": "Results based on web search with google based on search term.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mackv42/SEO-Testing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mackv42/SEO-Testing/issues"
+  },
+  "homepage": "https://github.com/mackv42/SEO-Testing#readme",
+  "dependencies": {
+    "selenium-webdriver": "^4.1.1"
+  }
+}
